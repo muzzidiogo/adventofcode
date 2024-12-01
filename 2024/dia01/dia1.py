@@ -1,22 +1,28 @@
-file = open('input.txt', 'rt')
+from typing import List, Tuple
 
-lines = []
-for line in file:
-    lines.append(line.removesuffix('\n'))
+def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
+    file = open('input.txt', 'rt')
 
-left, right = [], []
-for line in lines:
-    separated_line = line.split('   ')
-    left.append(separated_line[0])
-    right.append(separated_line[1])
+    left, right = [], []
+    for line in file:
+        line.removesuffix('\n')
+        separated_line = line.split('   ')
+        left.append(separated_line[0])
+        right.append(separated_line[1])
+    
+    left = sorted([int(num) for num in left])
+    right = sorted([int(num) for num in right])
+    
+    return left, right
 
-right.sort()
-left.sort()
+def find_distance(left: List[int], right:List[int]):
+    dist = [abs(x - y) for x, y in zip(left, right)]
+    return sum(dist)
 
-dist = []
-for i in range(len(right)):
-    dist.append(abs(int(right[i]) - int(left[i])))
+def main():
+    file = 'demo.txt'
+    left, right = separate_lists(file)
+    print(f'Sum of the distances: {find_distance(left, right)}')
 
-result = sum(dist)
-
-print(f'Sum:{result}')
+if __name__ == '__main__':
+    main()
