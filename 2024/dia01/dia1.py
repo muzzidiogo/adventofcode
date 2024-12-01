@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
+    """Separa as listas esquerda e direita de um arquivo de texto"""
     left, right = [], []
     
     with open(filepath, 'rt') as file:
@@ -15,11 +16,12 @@ def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
     
     return left, right
 
-def find_distance(left: List[int], right:List[int]):
+def find_distance(left: List[int], right:List[int]) -> int:
+    """Calcula a soma das distancias de cada elemento de duas listas"""
     dist = [abs(x - y) for x, y in zip(left, right)]
     return sum(dist)
 
-def main():
+def main() -> None:
     file = 'demo.txt'
     left, right = separate_lists(file)
     print(f'Sum of the distances: {find_distance(left, right)}')
