@@ -17,14 +17,9 @@ def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
     return left, right
 
 def similarity_score(left: List[int], right:List[int]) -> int:
-    score = 0
-    for numl in left:
-        count = 0
-        for numr in right:
-            if numl == numr:
-                count += 1
-        score += numl * count
-    return score
+    """Calcula o Similarity Score: a soma de cada elemento de left multiplicado pelo número de vezes que
+    aparece em right."""
+    return sum(numl * right.count(numl) for numl in left)
 
 def main():
     file = 'input.txt'
