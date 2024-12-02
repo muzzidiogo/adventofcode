@@ -2,12 +2,11 @@ from typing import List
 
 def get_reports(filepath: str) -> List[List[int]]:
     """Separa as listas esquerda e direita de um arquivo de texto"""
-    reports = []
     
+    reports = []
     with open(filepath, 'rt') as file:
         for report in file:
-            report = report.removesuffix('\n')
-            levels = report.split(' ')
+            levels = report.removesuffix('\n').split(' ')
             reports.append([int(num) for num in levels])
     
     return reports
@@ -32,7 +31,7 @@ def is_safe(report:List[int]) -> bool:
             is_increasing = False
     
     return (is_decreasing or is_increasing) and in_range
-
+    
 def main() -> None:
     """Função de Execução do Código"""
 
@@ -41,7 +40,7 @@ def main() -> None:
 
     safe = 0
     for report in reports:
-        if is_safe(report):
+        if any(is_safe(report[:n]+report[n+1:]) for n in range(len(report))):
             safe += 1
     
     print(f'Total of {safe} safe reports')
