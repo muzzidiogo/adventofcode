@@ -1,7 +1,6 @@
 from typing import List
 
 def get_reports(filepath: str) -> List[List[int]]:
-    """Separa as listas esquerda e direita de um arquivo de texto"""
     
     reports = []
     with open(filepath, 'rt') as file:
@@ -12,7 +11,6 @@ def get_reports(filepath: str) -> List[List[int]]:
     return reports
 
 def is_safe(report:List[int]) -> bool:
-    """Confere se o report é seguro"""
 
     is_increasing = True
     is_decreasing = True
@@ -33,7 +31,6 @@ def is_safe(report:List[int]) -> bool:
     return (is_decreasing or is_increasing) and in_range
     
 def main() -> None:
-    """Função de Execução do Código"""
 
     filepath = 'input.txt'
     reports = get_reports(filepath)

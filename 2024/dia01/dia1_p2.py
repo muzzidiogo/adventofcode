@@ -1,7 +1,6 @@
 from typing import List, Tuple
 
 def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
-    """Separa as listas esquerda e direita de um arquivo de texto"""
     left, right = [], []
     
     with open(filepath, 'rt') as file:
@@ -17,8 +16,6 @@ def separate_lists(filepath: str) -> Tuple[List[int], List[int]]:
     return left, right
 
 def similarity_score(left: List[int], right:List[int]) -> int:
-    """Calcula o Similarity Score: a soma de cada elemento de left 
-    multiplicado pelo número de vezes que aparece em right."""
     return sum(numl * right.count(numl) for numl in left)
 
 def main():
