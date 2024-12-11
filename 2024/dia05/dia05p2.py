@@ -1,7 +1,7 @@
 from typing import List 
 from math import floor
 
-def check_rules(rules: List[List[int]], update: List[int]):
+def check_rules(rules: List[List[int]], update: List[int]) -> tuple[List[int], bool]:
     changed = False
     for rule in rules:
         if rule[0] in update and rule [1] in update:
@@ -56,11 +56,9 @@ def get_input(filepath:str) -> tuple[List[List[int]], List[List[int]]]:
     return rules, updates
 
 def main() -> None:
-    # [floor(len(update)/2)]
     input_path = 'input.txt'
     rules, updates = get_input(input_path)
     incorrectUpdates = check_updates(rules, updates)
-    print(incorrectUpdates)
     
     center = []
     for update in incorrectUpdates:
